@@ -2,14 +2,14 @@ const Ship = require("../src/Ship.js");
 
 describe("Ship", () => {
   test("initializes correctly", () => {
-    const ship = new Ship(3);
+    const ship = new Ship("test", 3);
 
     expect(ship.length).toBe(3);
     expect(ship.hits).toBe(0);
   });
 
   test("increases hits", () => {
-    const ship = new Ship(3);
+    const ship = new Ship("test", 3);
 
     ship.hit();
 
@@ -17,7 +17,7 @@ describe("Ship", () => {
   });
 
   test("is not sunk before enough hits", () => {
-    const ship = new Ship(3);
+    const ship = new Ship("test", 3);
 
     ship.hit();
     ship.hit();
@@ -26,7 +26,7 @@ describe("Ship", () => {
   });
 
   test("is sunk after enough hits", () => {
-    const ship = new Ship(3);
+    const ship = new Ship("test", 3);
 
     ship.hit();
     ship.hit();

@@ -1,0 +1,19 @@
+.playerBoard{
+    height: 500px;
+    width: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.slot{
+    height: 50px;
+    width: 50px;
+    outline: 1px solid black;
+    background-color: lime;
+}
+
+.slot:hover{
+    background-color: gray;
+}

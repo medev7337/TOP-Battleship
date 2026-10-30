@@ -4,8 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Battleship</title>
+    <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-    HELLO
+    <div class="playerBoard">
+
+    </div>
+    <script>
+        for (let i = 0; i < 10; i++){
+            for (let j = 0; j < 10; j++){
+                const div = document.createElement("div");
+                div.className = "slot"
+                document.querySelector(".playerBoard").appendChild(div);
+            }
+        }
+    </script>
 </body>
 </html>

@@ -1,11 +1,18 @@
 class Gameboard {
-  constructor(name) {
-    this.playerName = name;
+  constructor() {
     this.ships = [];
-    this.hitPositions = [];
+    this.shipHits = [];
+    this.oceanHits = [];
   }
 
   addShip(ship, position, orientation) {
+    if (position.x < 0 || position.y < 0) {
+      return false;
+    }
+    if (position.x + ship.length >= 10 || position.y + ship.length >= 10) {
+      return false;
+    }
+
     const ps = [];
 
     if (orientation === "horizontal") {
@@ -24,26 +31,39 @@ class Gameboard {
 
     this.ships.push(ship);
 
-    return ship;
+    return true;
   }
 
+  // Ocean hits check in tests, ship state check too
   receiveAttack(cords) {
-    this.hitPositions.push(cords);
-
     // Checks each ships positions to see if cords equals
     for (let i = 0; i < this.ships.length; i++) {
       let hasShip = false;
+      let removeIndex = 0;
       const cs = this.ships[i];
-      cs.positions.forEach((pos) => {
+      for (let j = 0; j < cs.positions.length; j++) {
+        const pos = cs.positions[j];
         if (pos.x === cords.x && pos.y === cords.y) {
+          removeIndex = j;
           hasShip = true;
         }
-      });
+      }
       if (hasShip) {
+        cs.hit();
+        cs.positions.splice(removeIndex, 1);
+        this.shipHits.push(cords);
         return true;
       }
     }
 
+    this.oceanHits.push(cords);
+    return false;
+  }
+
+  hasShips() {
+    this.ships.forEach((ship) => {
+      if (ship.isSunk() === false) return true;
+    });
     return false;
   }
 }

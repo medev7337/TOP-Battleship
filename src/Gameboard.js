@@ -69,42 +69,47 @@ class Gameboard {
   }
 
   hasShips() {
-    this.ships.forEach((ship) => {
-      if (ship.isSunk() === false) return true;
-    });
+    for (let i = 0; i < this.ships.length; i++) {
+      const ship = this.ships[i];
+      if (ship.isSunk() === false) {
+        return true;
+      }
+    }
     return false;
   }
 
-  updateVisuals(playerBoard, vis) {
-    for (let y = 0; y < 10; y++) {
-      for (let x = 0; x < 10; x++) {
-        const newDiv = document.createElement("div");
-        newDiv.className = "slot";
+  updateUI(slots, showShips) {
+    slots.forEach((slot) => {
+      let x = Number(slot.dataset.x);
+      let y = Number(slot.dataset.y);
 
-        if (vis) {
-          this.ships.forEach((ship) => {
-            ship.positions.forEach((pos) => {
-              if (pos.x === x && pos.y === y) {
-                newDiv.classList.add("ship");
+      if (showShips) {
+        this.ships.forEach((ship) => {
+          ship.positions.forEach((pos) => {
+            if (pos.x === x && pos.y === y) {
+              if (!slot.classList.contains("ship")) {
+                slot.classList.add("ship");
               }
-            });
+            }
           });
-        }
-
-        this.shipHits.forEach((hit) => {
-          if (hit.x === x && hit.y === y) {
-            newDiv.classList.add("shipHit");
-          }
         });
-        this.oceanHits.forEach((hit) => {
-          if (hit.x === x && hit.y === y) {
-            newDiv.classList.add("oceanHit");
-          }
-        });
-
-        playerBoard.appendChild(newDiv);
       }
-    }
+
+      this.shipHits.forEach((hit) => {
+        if (hit.x === x && hit.y === y) {
+          if (!slot.classList.contains("shipHit")) {
+            slot.classList.add("shipHit");
+          }
+        }
+      });
+      this.oceanHits.forEach((hit) => {
+        if (hit.x === x && hit.y === y) {
+          if (!slot.classList.contains("oceanHit")) {
+            slot.classList.add("oceanHit");
+          }
+        }
+      });
+    });
   }
 }
 

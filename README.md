@@ -2,4 +2,4 @@
 
 10/31/2026: Well testing isn't that bad. I feel like I've made progress.
 
-11/1/2026: I think I'm very close to the finish line.
+11/1/2026: I think I'm very close to the finish line. I know I'm not the best at coding but if it works it works noh?

@@ -8,7 +8,13 @@ button{
     width: 100px;
 }
 
-#playerBoard{
+main{
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.board{
     height: 500px;
     width: 500px;
     display: flex;
@@ -22,6 +28,17 @@ button{
     width: 50px;
     outline: 1px solid black;
     background-color: lime;
+}
+
+.enemySlot{
+    height: 50px;
+    width: 50px;
+    outline: 1px solid black;
+    background-color: green;
+}
+
+.enemySlotHover{
+    background-color: darkgreen;
 }
 
 .hovering{
@@ -38,4 +55,16 @@ button{
 
 .ship{
     background-color: aqua;
+}
+
+.oceanHit{
+    background-color: darkred;
+}
+
+.shipHit{
+    background-color: red;
+}
+
+.interactable:hover{
+    background-color: orange;
 }

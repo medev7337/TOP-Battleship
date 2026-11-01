@@ -6,10 +6,18 @@ class Gameboard {
   }
 
   addShip(ship, position, orientation) {
+    position.x = Number(position.x);
+    position.y = Number(position.y);
+
     if (position.x < 0 || position.y < 0) {
       return false;
     }
-    if (position.x + ship.length >= 10 || position.y + ship.length >= 10) {
+
+    if (orientation === "horizontal" && Number(position.x) + ship.length > 10) {
+      return false;
+    }
+
+    if (orientation === "vertical" && Number(position.y) + ship.length > 10) {
       return false;
     }
 
@@ -66,6 +74,38 @@ class Gameboard {
     });
     return false;
   }
+
+  updateVisuals(playerBoard, vis) {
+    for (let y = 0; y < 10; y++) {
+      for (let x = 0; x < 10; x++) {
+        const newDiv = document.createElement("div");
+        newDiv.className = "slot";
+
+        if (vis) {
+          this.ships.forEach((ship) => {
+            ship.positions.forEach((pos) => {
+              if (pos.x === x && pos.y === y) {
+                newDiv.classList.add("ship");
+              }
+            });
+          });
+        }
+
+        this.shipHits.forEach((hit) => {
+          if (hit.x === x && hit.y === y) {
+            newDiv.classList.add("shipHit");
+          }
+        });
+        this.oceanHits.forEach((hit) => {
+          if (hit.x === x && hit.y === y) {
+            newDiv.classList.add("oceanHit");
+          }
+        });
+
+        playerBoard.appendChild(newDiv);
+      }
+    }
+  }
 }
 
-module.exports = Gameboard;
+export default Gameboard;

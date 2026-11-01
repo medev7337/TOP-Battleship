@@ -1,23 +1,23 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Battleship</title>
-    <link rel="stylesheet" href="./styles.css">
-</head>
-<body>
-    <div class="playerBoard">
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main>
+      <div id="placementBoard">
+        <div id="playerBoard"></div>
 
-    </div>
-    <script>
-        for (let i = 0; i < 10; i++){
-            for (let j = 0; j < 10; j++){
-                const div = document.createElement("div");
-                div.className = "slot"
-                document.querySelector(".playerBoard").appendChild(div);
-            }
-        }
-    </script>
-</body>
+        <button id="rotateButton">Rotate</button>
+        <button id="clearButton">Clear</button>
+        <button id="submitButton">Submit</button>
+      </div>
+    </main>
+
+    <script type="module" src="./Game.js"></script>
+    <script type="module" src="./Placement.js"></script>
+  </body>
 </html>

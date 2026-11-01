@@ -1,4 +1,4 @@
-const Ship = require("../src/Ship.js");
+import Ship from "../src/Ship.js";
 
 describe("Ship", () => {
   test("initializes correctly", () => {

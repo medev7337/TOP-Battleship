@@ -81,6 +81,8 @@ function enemyMove() {
   }
 }
 
-function endGame() {}
+function endGame() {
+  console.log("player lost");
+}
 
 export default startGame;

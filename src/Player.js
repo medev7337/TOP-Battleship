@@ -39,7 +39,6 @@ class Player {
   }
 
   getAttacked(cords) {
-    console.log(cords);
     const out = this.board.receiveAttack(cords);
     this.board.updateUI(this.slots, this.shipVisibility);
     return out;

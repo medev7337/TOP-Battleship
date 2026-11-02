@@ -13,6 +13,7 @@ class Game {
   initGame() {
     this.player.initUI(false);
     this.opp.initUI(true, this.playerInput.bind(this));
+    document.querySelector("#detailsText").textContent = "Your Turn";
   }
 
   playerInput(e) {
@@ -34,6 +35,7 @@ class Game {
       return;
     }
 
+    document.querySelector("#detailsText").textContent = "Dumbleship's Turn";
     setTimeout(() => {
       this.oppInput();
     }, 500);
@@ -45,7 +47,6 @@ class Game {
     if (this.playerTurn === true) return;
 
     this.enemyAI.move(this.player);
-    console.log("I'm done");
 
     if (this.player.isLost()) {
       this.endGame("opp");
@@ -53,10 +54,13 @@ class Game {
     }
 
     this.playerTurn = true;
+    document.querySelector("#detailsText").textContent = "Your Turn";
   }
 
   endGame(winner) {
-    console.log(winner);
+    if (winner === "player")
+      document.querySelector("#detailsText").textContent = `YOU WON!`;
+    else document.querySelector("#detailsText").textContent = `DUMBLESHIP WON!`;
     document.querySelector("#restartButton").style.display = "block";
   }
 

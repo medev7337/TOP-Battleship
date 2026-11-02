@@ -83,7 +83,6 @@ class EnemyAI {
       });
     }
 
-    console.log(ships);
     opp.createShips(ships);
   }
 
@@ -94,7 +93,6 @@ class EnemyAI {
       newCords = this.getNeighborInput();
     }
     if (newCords === null) {
-      console.log("going random");
       do {
         newCords = {
           x: Math.floor(Math.random() * 10),
@@ -115,30 +113,25 @@ class EnemyAI {
   getNeighborInput() {
     const cord = this.usedCords[this.usedCords.length - 1];
 
-    const ns = [];
+    const ns = [
+      { x: cord.x + 1, y: cord.y },
+      { x: cord.x - 1, y: cord.y },
+      { x: cord.x, y: cord.y + 1 },
+      { x: cord.x, y: cord.y - 1 },
+    ];
 
-    ns.push({ x: cord.x + 1, y: cord.y });
-    ns.push({ x: cord.x - 1, y: cord.y });
-    ns.push({ x: cord.x, y: cord.y + 1 });
-    ns.push({ x: cord.x, y: cord.y - 1 });
+    const available = ns.filter(
+      (n) =>
+        n.x >= 0 &&
+        n.x < 10 &&
+        n.y >= 0 &&
+        n.y < 10 &&
+        !this.usedCords.some((cord) => cord.x === n.x && cord.y === n.y),
+    );
 
-    console.log(ns);
+    if (available.length === 0) return null;
 
-    const rm = [];
-    for (let i = 0; i < ns.length; i++) {
-      const n = ns[i];
-      if (this.usedCords.some((cord) => cord.x === n.x && cord.y === n.y)) {
-        rm.push(i);
-      }
-    }
-
-    rm.forEach((n) => ns.splice(n, 1));
-
-    if (ns.length === 0) {
-      return null;
-    }
-
-    return ns[Math.floor(Math.random() * ns.length)];
+    return available[Math.floor(Math.random() * available.length)];
   }
 }
 

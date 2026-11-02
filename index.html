@@ -7,15 +7,19 @@
     <link rel="stylesheet" href="./src/styles.css" />
   </head>
   <body>
-    <h1>Play against the Dumbleship</h1>
-    <p id="detailText">Details Here</p>
+    <header>
+      <h1>Play against the Dumbleship</h1>
+      <p id="detailsText">Place your ships</p>
+    </header>
     <main>
       <div id="placementBoard">
         <div id="playerBoard" class="board"></div>
 
-        <button id="rotateButton">Rotate</button>
-        <button id="clearButton">Clear</button>
-        <button id="submitButton">Submit</button>
+        <div id="placementButtons">
+          <button id="rotateButton">Rotate</button>
+          <button id="clearButton">Clear</button>
+          <button id="submitButton">Submit</button>
+        </div>
       </div>
     </main>
     <button id="restartButton" style="display: none">Restart</button>

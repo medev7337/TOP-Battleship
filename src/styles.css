@@ -1,76 +1,194 @@
+:root {
+  --bg: #080d08;
+  --surface: #101810;
+  --surface-hover: #192619;
+
+  --green: #a3e635;
+  --green-dark: #365c24;
+  --green-glow: #39ff14;
+
+  --text: #d4e8d0;
+  --muted: #647764;
+
+  --red: #ff4141;
+  --blue: #4da6ff;
+}
+
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Consolas", monospace;
 }
 
 button {
   height: 50px;
   width: 100px;
+  background: var(--surface);
+  color: var(--green);
+  border: 1px solid var(--green-dark);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.15s ease;
+}
+
+button:hover {
+  background: var(--surface-hover);
+  border-color: var(--green);
+  box-shadow: 0 0 10px #a3e63530;
 }
 
 main {
   display: flex;
-  gap: 10px;
+  gap: 20px;
   justify-content: center;
+  align-items: center;
 }
 
 .board {
-  height: 500px;
   width: 500px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
+  height: 500px;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  background: var(--surface);
+  border: 1px solid #243824;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 0 25px #39ff1408;
+}
+
+.slot,
+.gameSlot {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #1c2b1c;
+  outline: none;
+  transition:
+    background-color 0.12s ease,
+    border-color 0.12s ease,
+    box-shadow 0.12s ease;
 }
 
 .slot {
-  height: 50px;
-  width: 50px;
-  outline: 1px solid black;
-  background-color: lime;
-  transition:
-    filter 0.1s ease,
-    background-color 0.1s ease;
+  background: #101b10;
 }
 
 .gameSlot {
-  height: 50px;
-  width: 50px;
-  outline: 1px solid black;
-  background-color: darkgreen;
-  transition:
-    filter 0.1s ease,
-    background-color 0.1s ease;
+  background: #142114;
+  cursor: pointer;
 }
 
 .gameSlot:hover {
-  filter: brightness(1.2);
+  background: #263e26;
+  border-color: var(--green-dark);
+  box-shadow: inset 0 0 10px #a3e63515;
 }
 
 .hovering {
-  background-color: gray;
+  background: #526d38;
+  border-color: var(--green);
+  box-shadow: inset 0 0 12px #a3e63540;
 }
 
 .hovering_invalid {
-  background-color: red;
+  background: #651f1f;
+  border-color: var(--red);
 }
 
 .isShip {
-  background-color: blue;
+  background: #1b4627;
+  border-color: #4b9e50;
 }
 
 .ship {
-  background-color: aqua;
+  background: var(--green);
+  border-color: #d4ff8a;
+  box-shadow: 0 0 12px #a3e63555;
 }
 
 .oceanHit {
-  background-color: darkred;
+  background: #401b1b;
+  border-color: #8b3030;
 }
 
 .shipHit {
-  background-color: red;
+  background: var(--red);
+  border-color: #ff8585;
+  box-shadow: 0 0 12px #ff414155;
 }
 
-.interactable:hover {
-  background-color: orange;
+header {
+  text-align: center;
+  padding: 40px 20px 30px;
+}
+
+h1 {
+  color: var(--green);
+  font-size: 2rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-shadow: 0 0 15px #a3e63530;
+  margin-bottom: 12px;
+}
+
+#detailsText {
+  color: var(--muted);
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+  min-height: 24px;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+#placementBoard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Restart button */
+#restartButton {
+  display: block;
+  margin: 30px auto;
+  width: 150px;
+  height: 48px;
+
+  background: transparent;
+  color: var(--green);
+  border: 1px solid var(--green);
+  border-radius: 5px;
+
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+#restartButton:hover {
+  background: var(--green);
+  color: var(--bg);
+  box-shadow: 0 0 20px #a3e63550;
+}
+
+#placementButtons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 30px;
 }

@@ -9,7 +9,7 @@ function startGame(ships) {
   const player = new Player("YOU", true);
   player.createShips(ships);
 
-  const opp = new Player("OPP", true);
+  const opp = new Player("OPP", false);
 
   const game = new Game(player, opp);
   game.generateEnemyShips();

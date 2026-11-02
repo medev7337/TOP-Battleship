@@ -1,3 +1,26 @@
+const shipConf = [
+  {
+    name: "carrier",
+    length: 5,
+  },
+  {
+    name: "battleship",
+    length: 4,
+  },
+  {
+    name: "destroyer",
+    length: 3,
+  },
+  {
+    name: "submarine",
+    length: 3,
+  },
+  {
+    name: "patrolboard",
+    length: 2,
+  },
+];
+
 class EnemyAI {
   constructor() {
     this.usedCords = [];
@@ -6,6 +29,62 @@ class EnemyAI {
 
   makeBoard(opp) {
     const ships = [];
+
+    const taken = [];
+
+    for (let i = 0; i < 5; i++) {
+      const cs = shipConf[i];
+
+      let newCords = {};
+      let ps = [];
+      let side = "";
+
+      do {
+        newCords = {};
+        ps = [];
+        side = "";
+
+        side = Math.floor(Math.random() * 2) === 1 ? "vertical" : "horizontal";
+
+        if (side === "horizontal") {
+          newCords = {
+            x: Math.floor(Math.random() * (10 - cs.length + 1)),
+            y: Math.floor(Math.random() * 10),
+          };
+        } else {
+          newCords = {
+            x: Math.floor(Math.random() * 10),
+            y: Math.floor(Math.random() * (10 - cs.length + 1)),
+          };
+        }
+
+        if (side === "horizontal") {
+          let endX = newCords.x + cs.length;
+          for (let i = newCords.x; i < endX; i++) {
+            ps.push({ x: i, y: newCords.y });
+          }
+        } else {
+          let endY = newCords.y + cs.length;
+          for (let i = newCords.y; i < endY; i++) {
+            ps.push({ x: newCords.x, y: i });
+          }
+        }
+      } while (taken.some((a) => ps.some((b) => a.x === b.x && a.y === b.y)));
+
+      for (let i = 0; i < ps.length; i++) {
+        taken.push(ps[i]);
+      }
+
+      ships.push({
+        name: cs.name,
+        length: cs.length,
+        side: side,
+        startPos: newCords,
+      });
+    }
+
+    console.log(ships);
+    opp.createShips(ships);
   }
 
   move(player) {

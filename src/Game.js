@@ -57,6 +57,11 @@ class Game {
 
   endGame(winner) {
     console.log(winner);
+    document.querySelector("#restartButton").style.display = "block";
+  }
+
+  generateEnemyShips() {
+    this.enemyAI.makeBoard(this.opp);
   }
 }
 

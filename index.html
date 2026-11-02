@@ -4,9 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Battleship</title>
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./src/styles.css" />
   </head>
   <body>
+    <h1>Play against the Dumbleship</h1>
+    <p id="detailText">Details Here</p>
     <main>
       <div id="placementBoard">
         <div id="playerBoard" class="board"></div>
@@ -16,8 +18,9 @@
         <button id="submitButton">Submit</button>
       </div>
     </main>
+    <button id="restartButton" style="display: none">Restart</button>
 
-    <script type="module" src="./GameLoop.js"></script>
-    <script type="module" src="./Placement.js"></script>
+    <script type="module" src="./src/GameLoop.js"></script>
+    <script type="module" src="./src/Placement.js"></script>
   </body>
 </html>

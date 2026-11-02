@@ -1,70 +1,76 @@
-*{
-    margin: 0;
-    padding: 0;
+* {
+  margin: 0;
+  padding: 0;
 }
 
-button{
-    height: 50px;
-    width: 100px;
+button {
+  height: 50px;
+  width: 100px;
 }
 
-main{
-    display: flex;
-    gap: 10px;
-    justify-content: center;
+main {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
 }
 
-.board{
-    height: 500px;
-    width: 500px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
+.board {
+  height: 500px;
+  width: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
-.slot{
-    height: 50px;
-    width: 50px;
-    outline: 1px solid black;
-    background-color: lime;
+.slot {
+  height: 50px;
+  width: 50px;
+  outline: 1px solid black;
+  background-color: lime;
+  transition:
+    filter 0.1s ease,
+    background-color 0.1s ease;
 }
 
-.gameSlot{
-    height: 50px;
-    width: 50px;
-    outline: 1px solid black;
-    background-color: darkgreen;
+.gameSlot {
+  height: 50px;
+  width: 50px;
+  outline: 1px solid black;
+  background-color: darkgreen;
+  transition:
+    filter 0.1s ease,
+    background-color 0.1s ease;
 }
 
-.gameSlot:hover{
-    background-color: green;
+.gameSlot:hover {
+  filter: brightness(1.2);
 }
 
-.hovering{
-    background-color: gray;
+.hovering {
+  background-color: gray;
 }
 
-.hovering_invalid{
-    background-color: red;
+.hovering_invalid {
+  background-color: red;
 }
 
-.isShip{
-    background-color: blue;
+.isShip {
+  background-color: blue;
 }
 
-.ship{
-    background-color: aqua;
+.ship {
+  background-color: aqua;
 }
 
-.oceanHit{
-    background-color: darkred;
+.oceanHit {
+  background-color: darkred;
 }
 
-.shipHit{
-    background-color: red;
+.shipHit {
+  background-color: red;
 }
 
-.interactable:hover{
-    background-color: orange;
+.interactable:hover {
+  background-color: orange;
 }

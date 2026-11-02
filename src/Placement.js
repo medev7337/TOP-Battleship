@@ -1,4 +1,4 @@
-import startGame from "./Game.js";
+import startGame from "./GameLoop.js";
 
 let placementOrientation = "horizontal";
 let cannotPlace = false;

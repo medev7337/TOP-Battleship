@@ -3,3 +3,5 @@
 10/31/2026: Well testing isn't that bad. I feel like I've made progress.
 
 11/1/2026: I think I'm very close to the finish line. I know I'm not the best at coding but if it works it works noh?
+
+11/2/2026: I literally did it I guess. Now I have to make the AI generate the board. After that I just have to polish this thing a little. Also I did make it a lot more OOP than my other projects. Now it doesn't depend much on others. It's cool

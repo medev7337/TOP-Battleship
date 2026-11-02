@@ -1,88 +1,63 @@
-import Player from "./Player.js";
+import EnemyAI from "./EnemyAI.js";
 
-const usedCords = [];
-const oppShips = [
-  {
-    name: "carrier",
-    length: 5,
-    side: "horizontal",
-    startPos: {
-      x: "4",
-      y: "5",
-    },
-  },
-  {
-    name: "battleship",
-    length: 4,
-    side: "horizontal",
-    startPos: {
-      x: "4",
-      y: "6",
-    },
-  },
-  {
-    name: "destroyer",
-    length: 3,
-    side: "horizontal",
-    startPos: {
-      x: "4",
-      y: "7",
-    },
-  },
-  {
-    name: "submarine",
-    length: 3,
-    side: "horizontal",
-    startPos: {
-      x: "4",
-      y: "8",
-    },
-  },
-  {
-    name: "patrolboard",
-    length: 2,
-    side: "horizontal",
-    startPos: {
-      x: "4",
-      y: "9",
-    },
-  },
-];
+class Game {
+  constructor(player, opp) {
+    this.player = player;
+    this.opp = opp;
 
-let player;
+    this.enemyAI = new EnemyAI();
 
-function startGame(ships) {
-  player = new Player("Temp Name", true);
-  player.createShips(ships, "pBoard", true, null);
+    this.playerTurn = true;
+  }
 
-  // Need to add visual ids and stuff before
-  const opp = new Player("Opp", false);
-  opp.createShips(oppShips, "oBoard", false, enemyMove);
-}
+  initGame() {
+    this.player.initUI(false);
+    this.opp.initUI(true, this.playerInput.bind(this));
+  }
 
-function enemyMove() {
-  let newCords;
+  playerInput(e) {
+    if (this.playerTurn === false) return;
 
-  do {
-    newCords = {
-      x: Math.floor(Math.random() * 10),
-      y: Math.floor(Math.random() * 10),
-    };
-  } while (
-    usedCords.some((cord) => cord.x === newCords.x && cord.y === newCords.y)
-  );
+    const d = e.target;
 
-  usedCords.push(newCords);
+    const x = Number(d.dataset.x);
+    const y = Number(d.dataset.y);
 
-  player.getAttacked(newCords);
+    const newCords = { x: x, y: y };
 
-  if (player.isLost()) {
-    endGame();
+    this.opp.getAttacked(newCords);
+
+    this.playerTurn = false;
+
+    if (this.opp.isLost()) {
+      this.endGame("player");
+      return;
+    }
+
+    setTimeout(() => {
+      this.oppInput();
+    }, 500);
+
+    e.target.replaceWith(e.target.cloneNode(true));
+  }
+
+  oppInput() {
+    if (this.playerTurn === true) return;
+
+    this.enemyAI.move(this.player);
+    console.log("I'm done");
+
+    if (this.player.isLost()) {
+      this.endGame("opp");
+      return;
+    }
+
+    this.playerTurn = true;
+  }
+
+  endGame(winner) {
+    console.log(winner);
   }
 }
 
-function endGame() {
-  console.log("player lost");
-}
-
-export default startGame;
+export default Game;
